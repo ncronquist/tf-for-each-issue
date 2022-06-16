@@ -32,5 +32,14 @@ terraform plan
 - You should receive the following error:
 
 ```
-
+│ Error: Invalid for_each argument
+│
+│   on modules/sqs-q-subscription/main.tf line 15, in resource "aws_sns_topic_subscription" "this":
+│   15:   for_each = toset(var.sns_arns)
+│     ├────────────────
+│     │ var.sns_arns is list of string with 1 element
+│
+│ The "for_each" value depends on resource attributes that cannot be determined until apply, so Terraform cannot predict how many
+│ instances will be created. To work around this, use the -target argument to first apply only the resources that the for_each
+│ depends on.
 ```
